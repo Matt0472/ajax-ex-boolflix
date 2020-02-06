@@ -12,9 +12,8 @@ $(document).ready(function() {
         query: query
       },
       success: function (data) {
-        console.log(data);
-        var films = data.results;
-        console.log(films);
+        var movies = data.results;
+        printSingleMovie(movies);
       },
       error: function (request, state, errors) {
         alert('errore');
@@ -23,7 +22,7 @@ $(document).ready(function() {
   );
 });
 
-function printSingleFilm(array) {
+function printSingleMovie(array) {
   var source = $('#entry-template').html();
   var template = Handlebars.compile(source);
   for (var i = 0; i < array.length; i++) {
