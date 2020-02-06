@@ -1,14 +1,18 @@
 $(document).ready(function() {
   var url = 'https://api.themoviedb.org/3/search/movie';
   $(document).on('click', '.search_btn', function () {
-    var text = $('.search_movies').val().toLowerCase();
+    $('.movies_list_container').html(' ');
+    var userInput = $('.search_movies').val().toLowerCase();
+    // if (userInput) {
+    //
+    // }
     $.ajax(
       {
         url: url,
         method: 'GET',
         data: {
           api_key: 'c0810927127de0abbc728e88cbc79828',
-          query: text
+          query: userInput
         },
         success: function (data) {
           var movies = data.results;
