@@ -4,7 +4,6 @@ $(document).ready(function() {
     $('.movies_list_container').html('');
     var userInput = $('.search_movies').val().toLowerCase();
     if (userInput == '') {
-      // $('.movies_list_container').html('');
       return;
     }
       $.ajax(
@@ -29,6 +28,11 @@ $(document).ready(function() {
   });
 });
 
+
+
+
+
+//----------------------------->FUNCTION<-------------------------------------//
 function printSingleMovie(array) {
   var source = $('#entry-template').html();
   var template = Handlebars.compile(source);
