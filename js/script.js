@@ -1,27 +1,36 @@
 $(document).ready(function() {
-  alert('Ciao porco!:D');
-
-
-  // $.ajax(
-  //   {
-  //     url: 'https://flynn.boolean.careers/exercises/api/holidays',
-  //     method: 'GET',
-  //     data: {
-  //       year: month.year(),
-  //       month: month.month()
-  //     },
-  //     success: function (data) {
-  //       var holidays = data.response;
-  //       for (var i = 0; i < holidays.length; i++) {
-  //         var thisHoliday = holidays[i];
-  //         var thisHolidayData = thisHoliday.date;
-  //         $('li[data-date-complete="'+ thisHolidayData  +'"]').addClass('holiday');
-  //         $('li[data-date-complete="'+ thisHolidayData  +'"]').find('.nome-festivita').append('-' +  ' ' + thisHoliday.name);
-  //       }
-  //     },
-  //     error: function () {
-  //       alert('errore');
-  //     }
-  //   }
-  // );
+  var url = 'https://api.themoviedb.org/3/search/movie';
+  var query = 'Il gladiatore';
+  // var userInput = $('input').val();
+  // console.log(userInput);
+  $.ajax(
+    {
+      url: url,
+      method: 'GET',
+      data: {
+        api_key: 'c0810927127de0abbc728e88cbc79828',
+        query: query
+      },
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (request, state, errors) {
+        alert('errore');
+      }
+    }
+  );
 });
+
+
+// handlebars
+// var source = document.getElementById("entry-template").innerHTML;
+// var template = Handlebars.compile(source);
+// var context = { title: "My New Post", body: "This is my first post!" };
+// var html = template(context);
+
+
+
+
+
+// MY API KEY
+// c0810927127de0abbc728e88cbc79828
