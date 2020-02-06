@@ -3,26 +3,28 @@ $(document).ready(function() {
   $(document).on('click', '.search_btn', function () {
     $('.movies_list_container').html(' ');
     var userInput = $('.search_movies').val().toLowerCase();
-    // if (userInput) {
-    //
-    // }
-    $.ajax(
-      {
-        url: url,
-        method: 'GET',
-        data: {
-          api_key: 'c0810927127de0abbc728e88cbc79828',
-          query: userInput
-        },
-        success: function (data) {
-          var movies = data.results;
-          printSingleMovie(movies);
-        },
-        error: function (request, state, errors) {
-          alert('errore');
+    if (userInput == '') {
+      $('.movies_list_container').html(' ');
+    } else {
+      $.ajax(
+        {
+          url: url,
+          method: 'GET',
+          data: {
+            api_key: 'c0810927127de0abbc728e88cbc79828',
+            query: userInput
+          },
+          success: function (data) {
+            var movies = data.results;
+            printSingleMovie(movies);
+          },
+          error: function (request, state, errors) {
+            alert('errore');
+          }
         }
-      }
-    );
+      );
+    }
+
   });
 });
 
