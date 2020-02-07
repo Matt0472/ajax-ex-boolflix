@@ -1,11 +1,15 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 body {
   background-color: red;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
+}
+
+li i {
+  color: yellow;
 }
