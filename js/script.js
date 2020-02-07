@@ -36,7 +36,6 @@ $(document).ready(function() {
           },
           success: function (data) {
             var series = data.results;
-            console.log(series);
             printSingleSerie(series);
           },
           error: function (request, state, errors) {
@@ -57,7 +56,7 @@ function printSingleMovie(array) {
   var source = $('#entry-template').html();
   var template = Handlebars.compile(source);
   if (array.length == 0) {
-    alert('Siamo spiacenti, nessun titolo trovato')
+    alert('Siamo spiacenti, nessun film trovato')
   } else {
     for (var i = 0; i < array.length; i++) {
       var thisFilm = array[i];
@@ -77,7 +76,7 @@ function printSingleSerie(array) {
   var source = $('#entry-template-series').html();
   var template = Handlebars.compile(source);
   if (array.length == 0) {
-    alert('Siamo spiacenti, nessun titolo trovato')
+    alert('Siamo spiacenti, nessuna serieTv trovata')
   } else {
     for (var i = 0; i < array.length; i++) {
       var thisSerie = array[i];
