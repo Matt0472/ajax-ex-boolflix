@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  var url = 'https://api.themoviedb.org/3/search/movie';
-
+  var urlMovies = 'https://api.themoviedb.org/3/search/movie';
+  var urlSeries = 'https://api.themoviedb.org/3/search/tv';
   $(document).on('click', '.search_btn', function () {
     $('.movies_list_container').html('');
     var userInput = $('.search_movies').val().toLowerCase();
@@ -9,7 +9,7 @@ $(document).ready(function() {
     }
       $.ajax(
         {
-          url: url,
+          url: urlMovies,
           method: 'GET',
           data: {
             api_key: 'c0810927127de0abbc728e88cbc79828',
@@ -18,8 +18,26 @@ $(document).ready(function() {
           },
           success: function (data) {
             var movies = data.results;
-            console.log(data.results);
             printSingleMovie(movies);
+          },
+          error: function (request, state, errors) {
+            alert('errore');
+          }
+        }
+      );
+      $.ajax(
+        {
+          url: urlSeries,
+          method: 'GET',
+          data: {
+            api_key: 'c0810927127de0abbc728e88cbc79828',
+            query: userInput,
+            language: 'it-IT'
+          },
+          success: function (data) {
+            var series = data.results;
+            console.log(series);
+            printSingleSerie(series);
           },
           error: function (request, state, errors) {
             alert('errore');
@@ -49,6 +67,26 @@ function printSingleMovie(array) {
         original_title: thisFilm.original_title,
         original_language: 'img/flag-of-' + thisFilm.original_language + '.png',
         vote_average: printStars(thisFilm.vote_average)
+      };
+      var html = template(context);
+      $('.movies_list_container').append(html);
+    }
+  }
+}
+function printSingleSerie(array) {
+  var source = $('#entry-template-series').html();
+  var template = Handlebars.compile(source);
+  if (array.length == 0) {
+    alert('Siamo spiacenti, nessun titolo trovato')
+  } else {
+    for (var i = 0; i < array.length; i++) {
+      var thisSerie = array[i];
+
+      var context = {
+        name: thisSerie.name,
+        original_name: thisSerie.original_name,
+        original_language: 'img/flag-of-' + thisSerie.original_language + '.png',
+        vote_average: printStars(thisSerie.vote_average)
       };
       var html = template(context);
       $('.movies_list_container').append(html);
