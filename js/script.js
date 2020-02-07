@@ -18,6 +18,7 @@ $(document).ready(function() {
           },
           success: function (data) {
             var movies = data.results;
+            console.log(data.results);
             printSingleMovie(movies);
           },
           error: function (request, state, errors) {
@@ -46,7 +47,7 @@ function printSingleMovie(array) {
       var context = {
         title: thisFilm.title,
         original_title: thisFilm.original_title,
-        original_language: thisFilm.original_language,
+        original_language: 'img/flag-of-' + thisFilm.original_language + '.png',
         vote_average: printStars(thisFilm.vote_average)
       };
       var html = template(context);
@@ -68,4 +69,7 @@ function printStars(vote) {
   }
   return stars;
 }
+
+// function printFlags(language) {
 //
+// }
