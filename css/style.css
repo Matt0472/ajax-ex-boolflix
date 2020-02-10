@@ -9,7 +9,24 @@ body {
   font-family: 'Lato', sans-serif;
   font-size: 14px;
 }
-
+ul.movies_list_container,
+ul.series_list_container {
+  list-style: none;
+}
+li.movie_serie_item {
+  margin: 30px;
+  border: 2px solid black;
+}
 li i {
   color: yellow;
+}
+
+.display_none {
+  display: none;
+}
+.active {
+  display: block;
+}
+.lang {
+  width: 40px;
 }

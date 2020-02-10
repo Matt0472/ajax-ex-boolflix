@@ -21,43 +21,38 @@
   <title>Boolflix</title>
 </head>
 <body>
-<div class="movies_wrapper">
-  <input class="search_movies" type="text" name="" value="" placeholder="Inserisci il titolo di un film">
-  <button class="search_btn" type="button" name="button">Cerca</button>
+  <div class="search-bar">
+    <input id="search_movies" type="text" name="" value="">
+    <button id="search_btn" type="button" name="button">Search</button>
+  </div>
 
-  <ul class="movies_list_container">
+    <h2>Cinema</h2>
+    <ul class="movies_list_container">
 
-  </ul>
-</div>
+    </ul>
 
+    <h2>SeireTV</h2>
+    <ul class="series_list_container">
 
+    </ul>
 
-
-
-<!-- nostro template -->
-  <script id="entry-template" type="text/x-handlebars-template">
-    <li class="movie_item">
-      Titolo del film: {{title}}
-      <ul>
-        <li>Titolo originale: {{original_title}}</li>
-        <li>Lingua originale: <img src="{{original_language}}" alt=""></li>
-        <li>Voto agli awards: {{{vote_average}}}</li>
-        <li>Immagine film: <img src="https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""></li>
-      </ul>
-    </li>
-  </script>
-  <script id="entry-template-series" type="text/x-handlebars-template">
-    <li class="series_item">
-      Titolo della serie: {{name}}
-      <ul>
-        <li>Titolo originale: {{original_name}}</li>
-        <li>Lingua originale: <img src="{{original_language}}" alt=""></li>
-        <li>Voto agli awards: {{{vote_average}}}</li>
-        <li>immagine serie: <img src="https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""></li>
-      </ul>
-    </li>
-  </script>
-
+  <!-- nostro template per film e serie -->
+    <script id="film-series-template" type="text/x-handlebars-template">
+     <li class="movie_serie_item">
+        {{title}}
+        <ul>
+          <li>{{type}}</li>
+          <li><img src="{{{poster_path}}}" alt=""></li>
+          <li>Titolo Originale: {{original_title}}</li>
+          <li>Lingua Originale: {{{original_language}}}</li>
+          <li>Voto agli awards: {{{vote_average}}}</li>
+        </ul>
+      </li>
+    </script>
+  <!-- nostro template se non ci sono risultati -->
+      <script id="noresult-template" type="text/x-handlebars-template">
+        <li>Non ci sono risultati</li>
+      </script>
   <!-- nostro script -->
   <script src="js/script.js" charset="utf-8"></script>
 </body>

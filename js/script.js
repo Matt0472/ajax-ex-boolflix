@@ -1,49 +1,9 @@
-$(document).ready(function() {
-  var urlMovies = 'https://api.themoviedb.org/3/search/movie';
-  var urlSeries = 'https://api.themoviedb.org/3/search/tv';
-  $(document).on('click', '.search_btn', function () {
-    $('.movies_list_container').html('');
-    var userInput = $('.search_movies').val().toLowerCase();
-    if (userInput == '') {
-      return;
-    }
-      $.ajax(
-        {
-          url: urlMovies,
-          method: 'GET',
-          data: {
-            api_key: 'c0810927127de0abbc728e88cbc79828',
-            query: userInput,
-            language: 'it-IT'
-          },
-          success: function (data) {
-            var movies = data.results;
-            printSingleMovie(movies);
-          },
-          error: function (request, state, errors) {
-            alert('errore');
-          }
-        }
-      );
-      $.ajax(
-        {
-          url: urlSeries,
-          method: 'GET',
-          data: {
-            api_key: 'c0810927127de0abbc728e88cbc79828',
-            query: userInput,
-            language: 'it-IT'
-          },
-          success: function (data) {
-            var series = data.results;
-            printSingleSerie(series);
-          },
-          error: function (request, state, errors) {
-            alert('errore');
-          }
-        }
-      );
-      var userInput = $('.search_movies').val('');
+$(document).ready(function () {
+  $('#search_btn').click(function () {
+    var query = $('#search_movies').val();
+    resetSearch();
+    printSingleMovie(query);
+    printSingleSerie(query);
   });
 });
 
@@ -51,75 +11,166 @@ $(document).ready(function() {
 
 
 
-//----------------------------->FUNCTION<-------------------------------------//
-function printSingleMovie(array) {
-  var source = $('#entry-template').html();
-  var template = Handlebars.compile(source);
-  if (array.length == 0) {
-    alert('Siamo spiacenti, nessun film trovato')
-  } else {
-    for (var i = 0; i < array.length; i++) {
-      var thisFilm = array[i];
 
-      var context = {
-        title: thisFilm.title,
-        original_title: thisFilm.original_title,
-        original_language: 'img/flag-of-' + thisFilm.original_language + '.png',
-        vote_average: printStars(thisFilm.vote_average),
-        poster_path: thisFilm.poster_path
-      };
-      var html = template(context);
-      $('.movies_list_container').append(html);
-    }
-  }
-}
-function printSingleSerie(array) {
-  var source = $('#entry-template-series').html();
-  var template = Handlebars.compile(source);
-  if (array.length == 0) {
-    alert('Siamo spiacenti, nessuna serieTv trovata')
-  } else {
-    for (var i = 0; i < array.length; i++) {
-      var thisSerie = array[i];
 
-      var context = {
-        name: thisSerie.name,
-        original_name: thisSerie.original_name,
-        original_language: 'img/flag-of-' + thisSerie.original_language + '.png',
-        vote_average: printStars(thisSerie.vote_average),
-        poster_path: thisSerie.poster_path
-      };
-      var html = template(context);
-      $('.movies_list_container').append(html);
-    }
-  }
+// ----------------------------->FUNCTION<----------------------------------//
+
+// FUNZIONE PER IL RESET DELLA BARRA DI RICERCA E PER I CONTENITORI
+function resetSearch() {
+  $('.movies_list_container').html('');
+  $('.series_list_container').html('');
+  $('#search_movies').val('');
 }
 
-function printStars(vote) {
-  var vote = Math.round(vote / 2);
-  var stars = '';
+// FUNZIONE PER LA STAMPA DEI FILM
+function printSingleMovie(string) {
+  var api_key = 'c0810927127de0abbc728e88cbc79828';
+  var url = 'https://api.themoviedb.org/3/search/movie';
+
+  $.ajax({
+    url: url,
+    method: 'GET',
+    data: {
+      api_key: api_key,
+      query: string,
+      language: 'it-IT'
+    },
+    success: function(data) {
+      if(data.total_results > 0) {
+        var films = data.results;
+        printResult('film', films);
+      } else {
+        printNoResult($('.movies_list_container'));
+      }
+
+    },
+    error: function (request, state, errors) {
+      console.log(errors);
+    }
+  });
+
+}
+
+
+// FUNZIONE PER LA STAMPA DELLE SERIE
+function printSingleSerie(string) {
+  var api_key = 'c0810927127de0abbc728e88cbc79828';
+  var url = 'https://api.themoviedb.org/3/search/tv';
+
+  $.ajax({
+    url: url,
+    method: 'GET',
+    data: {
+      api_key: api_key,
+      query: string,
+      language: 'it-IT'
+    },
+    success: function(data) {
+      if(data.total_results > 0) {
+        var tv = data.results;
+        printResult('tv', tv);
+      } else {
+        printNoResult($('.series_list_container'));
+      }
+
+    },
+    error: function (request, state, errors) {
+      console.log(errors);
+    }
+  });
+
+}
+
+// FUNZIONE PER LA STAMPA DELLE STELLE
+function printStars (num) {
+  num = Math.ceil(num / 2);
+  var string = '';
+
   for (var i = 1; i <= 5; i++) {
-    if (i <= vote) {
-      var singleStar = '<i class="fas fa-star"></i>';
+    if(i <= num ) {
+      string += '<i class="fas fa-star"></i>';
     } else {
-      var singleStar = '<i class="far fa-star"></i>';
+      string += '<i class="far fa-star"></i>';
     }
-    stars += singleStar;
   }
-  return stars;
+
+  return string
 }
 
-// function printImage(string) {
-//   $.ajax(
-//     {
-//       url: 'https://image.tmdb.org/t/p/w185' + string,
-//       method: 'GET',
-//       success: function (data) {
-//         console.log(data);
-//       },
-//       error: function (request, state, errors) {
-//         alert('errore');
-//       }
-//     }
-//   );
-// }
+
+// FUNZIONE PER LA STAMPA DELLE BANDIERE DELLE LINGUE
+function printLanguage(string) {
+  var availableLangs = [
+    'en',
+    'it',
+    'fr',
+    'de',
+    'pt',
+    'zh',
+    'es',
+    'cs',
+    'ja'
+  ];
+
+  if(availableLangs.includes(string)) {
+    string = '<img class="lang" src="img/flag-of-' + string + '.png" alt="language">';
+  }
+
+  return string;
+}
+
+
+// FUNZIONE PER LA STAMPA DEI RISULTATI CHE CAMBIA IN BASE A SE TROVA UN FILM O UNA SERIETV
+function printResult(type, results) {
+  var source = $('#film-series-template').html();
+  var template = Handlebars.compile(source);
+  var title;
+  var originalTitle;
+
+  for (var i = 0; i < results.length; i++) {
+    var thisResult = results[i];
+
+    if(type == 'film') {
+      originalTitle = thisResult.original_title;
+      title = thisResult.title;
+      var container = $('.movies_list_container');
+    } else if (type == 'tv'){
+      originalTitle = thisResult.original_name;
+      title = thisResult.name;
+      var container = $('.series_list_container');
+    }
+
+    var context = {
+      type: type,
+      title: title,
+      original_title: originalTitle,
+      original_language: printLanguage(thisResult.original_language),
+      vote_average: printStars(thisResult.vote_average),
+      poster_path: printPoster(thisResult.poster_path)
+    };
+
+    var html = template(context);
+
+    container.append(html);
+  }
+}
+
+
+// FUNZIONE PER LA STAMPA SE NON CI SONO RISULTATI
+function printNoResult(container) {
+  var source = $('#noresult-template').html();
+  var template = Handlebars.compile(source);
+  var html = template();
+  container.append(html);
+}
+
+// FUNZIONE PER LA STAMPA DELLE COPERTINE
+function printPoster(poster) {
+  var url = 'https://image.tmdb.org/t/p/w185';
+  if (poster != null) {
+    url += poster;
+  } else {
+    url = 'img/not_found_2.jpg';
+  }
+  return url;
+}
