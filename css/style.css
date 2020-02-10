@@ -1,31 +1,42 @@
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} */
+}
 
 body {
-  background-color: red;
+  /* background-color: rgba(0, 0, 0, 0.77); */
+  background-color: #141414;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
+  color: red;
 }
-ul.movies_list_container,
-ul.series_list_container {
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1030;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+  background-color: #000000;
+}
+main {
+  margin-top: 80px;
+}
+ul {
   list-style: none;
 }
 li.movie_serie_item {
   margin: 30px;
-  border: 2px solid black;
+  border: 2px solid red;
 }
 li i {
   color: yellow;
-}
-
-.display_none {
-  display: none;
-}
-.active {
-  display: block;
 }
 .lang {
   width: 40px;

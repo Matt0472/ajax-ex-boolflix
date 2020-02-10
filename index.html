@@ -21,20 +21,29 @@
   <title>Boolflix</title>
 </head>
 <body>
-  <div class="search-bar">
-    <input id="search_movies" type="text" name="" value="">
-    <button id="search_btn" type="button" name="button">Search</button>
-  </div>
+  <header>
+    <div class="logo-container">
+      <h1>Boolflix</h1>
+    </div>
+    <div class="search-bar">
+      <input id="search_movies" type="text" name="" value="">
+      <button id="search_btn" type="button" name="button">Search</button>
+    </div>
+  </header>
+<main>
+  <section class="cinema">
+      <h2>Cinema</h2>
+      <ul class="movies_list_container">
 
-    <h2>Cinema</h2>
-    <ul class="movies_list_container">
-
-    </ul>
-
-    <h2>SeireTV</h2>
+      </ul>
+  </section>
+  <section class="serie">
+    <h2>SerieTV</h2>
     <ul class="series_list_container">
 
     </ul>
+  </section>
+</main>
 
   <!-- nostro template per film e serie -->
     <script id="film-series-template" type="text/x-handlebars-template">
