@@ -30,32 +30,39 @@
       <button id="search_btn" type="button" name="button">Search</button>
     </div>
   </header>
-<main>
-  <section class="cinema">
-      <h2>Cinema</h2>
+<main class="main_content">
+  <div class="wrapper_85">
+    <h2>Cinema</h2>
+    <section class="cinema">
       <ul class="movies_list_container">
 
       </ul>
-  </section>
-  <section class="serie">
+    </section>
     <h2>SerieTV</h2>
-    <ul class="series_list_container">
+    <section class="serie">
+      <ul class="series_list_container">
 
-    </ul>
-  </section>
+      </ul>
+    </section>
+  </div>
 </main>
 
   <!-- nostro template per film e serie -->
     <script id="film-series-template" type="text/x-handlebars-template">
      <li class="movie_serie_item">
-        {{title}}
-        <ul>
-          <li>{{type}}</li>
-          <li><img src="{{{poster_path}}}" alt=""></li>
-          <li>Titolo Originale: {{original_title}}</li>
-          <li>Lingua Originale: {{{original_language}}}</li>
-          <li>Voto agli awards: {{{vote_average}}}</li>
-        </ul>
+       <div class="item_wrapper">
+         <img class="poster" src="{{{poster_path}}}" alt="">
+         <div class="info_wrapper">
+           <ul>
+             <li>{{type}}</li>
+             <li>{{title}}</li>
+             <li>Titolo Originale: {{original_title}}</li>
+             <li>Lingua Originale: {{{original_language}}}</li>
+             <li>Voto agli awards: {{{vote_average}}}</li>
+             <li>Trama: {{overview}}</li>
+           </ul>
+         </div>
+       </div>
       </li>
     </script>
   <!-- nostro template se non ci sono risultati -->

@@ -146,7 +146,8 @@ function printResult(type, results) {
       original_title: originalTitle,
       original_language: printLanguage(thisResult.original_language),
       vote_average: printStars(thisResult.vote_average),
-      poster_path: printPoster(thisResult.poster_path)
+      poster_path: printPoster(thisResult.poster_path),
+      overview: printOverview(thisResult.overview)
     };
 
     var html = template(context);
@@ -166,11 +167,17 @@ function printNoResult(container) {
 
 // FUNZIONE PER LA STAMPA DELLE COPERTINE
 function printPoster(poster) {
-  var url = 'https://image.tmdb.org/t/p/w185';
+  var url = 'https://image.tmdb.org/t/p/w342';
   if (poster != null) {
     url += poster;
   } else {
     url = 'img/not_found_2.jpg';
   }
   return url;
+}
+function printOverview(overview) {
+  if (overview == '') {
+    overview = 'Nessuna trama disponibile!'
+  }
+  return overview;
 }
