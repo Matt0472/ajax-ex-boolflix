@@ -65,7 +65,8 @@ function printSingleMovie(array) {
         title: thisFilm.title,
         original_title: thisFilm.original_title,
         original_language: 'img/flag-of-' + thisFilm.original_language + '.png',
-        vote_average: printStars(thisFilm.vote_average)
+        vote_average: printStars(thisFilm.vote_average),
+        poster_path: thisFilm.poster_path
       };
       var html = template(context);
       $('.movies_list_container').append(html);
@@ -85,7 +86,8 @@ function printSingleSerie(array) {
         name: thisSerie.name,
         original_name: thisSerie.original_name,
         original_language: 'img/flag-of-' + thisSerie.original_language + '.png',
-        vote_average: printStars(thisSerie.vote_average)
+        vote_average: printStars(thisSerie.vote_average),
+        poster_path: thisSerie.poster_path
       };
       var html = template(context);
       $('.movies_list_container').append(html);
@@ -107,6 +109,17 @@ function printStars(vote) {
   return stars;
 }
 
-// function printFlags(language) {
-//
+// function printImage(string) {
+//   $.ajax(
+//     {
+//       url: 'https://image.tmdb.org/t/p/w185' + string,
+//       method: 'GET',
+//       success: function (data) {
+//         console.log(data);
+//       },
+//       error: function (request, state, errors) {
+//         alert('errore');
+//       }
+//     }
+//   );
 // }
