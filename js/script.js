@@ -5,6 +5,14 @@ $(document).ready(function () {
     printSingleMovie(query);
     printSingleSerie(query);
   });
+  $('#search_movies').keypress(function(event) {
+    if (event.which == 13) {
+      var query = $('#search_movies').val();
+      resetSearch();
+      printSingleMovie(query);
+      printSingleSerie(query);
+    }
+  });
 });
 
 
