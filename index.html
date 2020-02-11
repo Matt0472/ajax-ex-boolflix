@@ -23,7 +23,8 @@
 <body>
   <header>
     <div class="logo-container">
-      <h1>Boolflix</h1>
+      <img src="img/logo2.jpeg" alt="">
+      <!-- <h1>Boolflix</h1> -->
     </div>
     <div class="search-bar">
       <input id="search_movies" type="text" name="" value="">
@@ -32,13 +33,13 @@
   </header>
 <main class="main_content">
   <div class="wrapper_85">
-    <h2>Cinema</h2>
+    <h2 class="section_title">Cinema</h2>
     <section class="cinema flex">
       <ul class="movies_list_container">
 
       </ul>
     </section>
-    <h2>SerieTV</h2>
+    <h2 class="section_title">SerieTV</h2>
     <section class="serie flex">
       <ul class="series_list_container">
 
@@ -59,7 +60,11 @@
              <li>Titolo Originale: {{original_title}}</li>
              <li>Lingua Originale: {{{original_language}}}</li>
              <li>Voto agli awards: {{{vote_average}}}</li>
-             <li>Trama: {{overview}}</li>
+             <li>
+               <div class="trama">
+                 Trama: {{overview}}
+               </div>
+             </li>
            </ul>
          </div>
        </div>

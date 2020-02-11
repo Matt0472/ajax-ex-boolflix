@@ -39,13 +39,35 @@ header {
   align-items: center;
   background-color: #000000;
 }
+.logo-container img {
+  width: 120px;
+  height: 80px;
+}
+#search_movies {
+  border-radius: 5px;
+  padding: 4px;
+}
+#search_btn {
+  border-radius: 10px;
+  padding: 6px 25px;
+  background-color: rgb(219, 27, 27);
+  border-color: rgb(219, 27, 27);
+  color: #fff;
+  margin-left: 20px;
+}
 /* main content */
 .main_content {
   margin-top: 80px;
 }
+.section_title {
+  text-align: center;
+  font-size: 30px;
+}
+.cinema {
+  border-bottom: 2px solid #fff;
+}
 li.movie_serie_item {
   display: inline-block;
-  border: 2px solid red;
   height: 400px;
   overflow: hidden;
   margin: 20px;
@@ -59,7 +81,7 @@ li.movie_serie_item {
   width: 250px;
 }
 .info_wrapper {
-  width: 100%;
+  width: 251px;
   height: 100%;
   background-color: rgba(50, 50, 50, 0.8);
   position: absolute;
@@ -67,12 +89,12 @@ li.movie_serie_item {
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
+  overflow-y: auto
 }
 .info_wrapper:hover {
   cursor: pointer;
   opacity: 1;
 }
-
 .lang {
   width: 40px;
 }
