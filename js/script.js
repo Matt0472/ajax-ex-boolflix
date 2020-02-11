@@ -166,6 +166,7 @@ function printNoResult(container) {
 }
 
 // FUNZIONE PER LA STAMPA DELLE COPERTINE
+
 function printPoster(poster) {
   var url = 'https://image.tmdb.org/t/p/w342';
   if (poster != null) {
@@ -175,6 +176,7 @@ function printPoster(poster) {
   }
   return url;
 }
+
 function printOverview(overview) {
   if (overview == '') {
     overview = 'Nessuna trama disponibile!'
