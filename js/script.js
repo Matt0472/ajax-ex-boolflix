@@ -15,12 +15,6 @@ $(document).ready(function () {
   });
 });
 
-
-
-
-
-
-
 // ----------------------------->FUNCTION<----------------------------------//
 
 // FUNZIONE PER IL RESET DELLA BARRA DI RICERCA E PER I CONTENITORI
@@ -29,7 +23,6 @@ function resetSearch() {
   $('.series_list_container').html('');
   $('#search_movies').val('');
 }
-
 // FUNZIONE PER LA STAMPA DEI FILM
 function printSingleMovie(string) {
   var api_key = 'c0810927127de0abbc728e88cbc79828';
@@ -58,8 +51,6 @@ function printSingleMovie(string) {
   });
 
 }
-
-
 // FUNZIONE PER LA STAMPA DELLE SERIE
 function printSingleSerie(string) {
   var api_key = 'c0810927127de0abbc728e88cbc79828';
@@ -88,7 +79,6 @@ function printSingleSerie(string) {
   });
 
 }
-
 // FUNZIONE PER LA STAMPA DELLE STELLE
 function printStars (num) {
   num = Math.ceil(num / 2);
@@ -104,8 +94,6 @@ function printStars (num) {
 
   return string
 }
-
-
 // FUNZIONE PER LA STAMPA DELLE BANDIERE DELLE LINGUE
 function printLanguage(string) {
   var availableLangs = [
@@ -126,8 +114,6 @@ function printLanguage(string) {
 
   return string;
 }
-
-
 // FUNZIONE PER LA STAMPA DEI RISULTATI CHE CAMBIA IN BASE A SE TROVA UN FILM O UNA SERIETV
 function printResult(type, results) {
   var source = $('#film-series-template').html();
@@ -163,8 +149,6 @@ function printResult(type, results) {
     container.append(html);
   }
 }
-
-
 // FUNZIONE PER LA STAMPA SE NON CI SONO RISULTATI
 function printNoResult(container) {
   var source = $('#noresult-template').html();
@@ -172,9 +156,7 @@ function printNoResult(container) {
   var html = template();
   container.append(html);
 }
-
 // FUNZIONE PER LA STAMPA DELLE COPERTINE
-
 function printPoster(poster) {
   var url = 'https://image.tmdb.org/t/p/w342';
   if (poster != null) {
@@ -184,7 +166,7 @@ function printPoster(poster) {
   }
   return url;
 }
-
+// FUNZIONE PER LA STAMPA DELLE OVERVIEW
 function printOverview(overview) {
   if (overview == '') {
     overview = 'Nessuna trama disponibile!'
