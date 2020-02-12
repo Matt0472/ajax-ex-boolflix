@@ -53,15 +53,15 @@
        <div class="item_wrapper">
          <img class="poster" src="{{{poster_path}}}" alt="">
          <div class="info_wrapper">
-           <ul>
-             <li>{{type}}</li>
-             <li>{{title}}</li>
-             <li>Titolo Originale: {{original_title}}</li>
-             <li>Lingua Originale: {{{original_language}}}</li>
-             <li>Voto agli awards: {{{vote_average}}}</li>
+           <ul class="text_left info_list">
+             <li><span>Tipo: </span>Serie{{type}}</li>
+             <li><span>Titolo: </span>{{title}}</li>
+             <li><span>Titolo Originale: </span> {{original_title}}</li>
+             <li><span>Lingua Originale: </span> {{{original_language}}}</li>
+             <li><span>Voto agli awards: </span> {{{vote_average}}}</li>
              <li>
                <div class="trama">
-                 Trama: {{overview}}
+                 <span>Trama: </span>{{overview}}
                </div>
              </li>
            </ul>
@@ -71,7 +71,7 @@
     </script>
   <!-- nostro template se non ci sono risultati -->
       <script id="noresult-template" type="text/x-handlebars-template">
-        <li>Non ci sono risultati</li>
+        <li>Nessun risultato per la tua ricerca</li>
       </script>
   <!-- nostro script -->
   <script src="js/script.js" charset="utf-8"></script>

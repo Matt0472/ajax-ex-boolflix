@@ -13,6 +13,8 @@ $(document).ready(function () {
       printSingleSerie(query);
     }
   });
+  // printCastMovie();
+  // printCastSerie();
 });
 
 // ----------------------------->FUNCTION<----------------------------------//
@@ -40,6 +42,11 @@ function printSingleMovie(string) {
       if(data.total_results > 0) {
         var films = data.results;
         printResult('film', films);
+        for (var i = 0; i < films.length; i++) {
+          var thisMovie = data.results[i].id;
+          // console.log(thisMovie);
+          printCastMovie(thisMovie);
+        }
       } else {
         printNoResult($('.movies_list_container'));
       }
@@ -172,4 +179,38 @@ function printOverview(overview) {
     overview = 'Nessuna trama disponibile!'
   }
   return overview;
+}
+//FUNZIONE PER LA CHIAMATA DEL CAST DEI FILM
+function printCastMovie(id) {
+  $.ajax({
+    url: 'https://api.themoviedb.org/3/movie/'+ id +'/credits',
+    method: 'GET',
+    data: {
+      api_key: 'c0810927127de0abbc728e88cbc79828',
+      language: 'it-IT'
+    },
+    success: function(data) {
+      console.log(data);
+    },
+    error: function (request, state, errors) {
+      console.log(errors);
+    }
+  });
+}
+//FUNZIONE PER LA CHIAMATA DEL CAST DEI DELLE SERIE
+function printCastSerie(id) {
+  $.ajax({
+    url: 'https://api.themoviedb.org/3/tv/'+ id +'/credits',
+    method: 'GET',
+    data: {
+      api_key: 'c0810927127de0abbc728e88cbc79828',
+      language: 'it-IT'
+    },
+    success: function(data) {
+      console.log(data);
+    },
+    error: function (request, state, errors) {
+      console.log(errors);
+    }
+  });
 }

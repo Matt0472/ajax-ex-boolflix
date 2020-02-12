@@ -8,7 +8,7 @@ body {
   background-color: #141414;
   font-family: 'Lato', sans-serif;
   font-size: 14px;
-  color: red;
+  color: rgb(255, 0, 0);
 }
 
 /* utility */
@@ -24,7 +24,10 @@ ul {
   list-style: none;
 }
 li i {
-  color: yellow;
+  color: rgb(255, 240, 0);
+}
+.text_left {
+  text-align: left;
 }
 /* navbar */
 header {
@@ -84,7 +87,7 @@ li.movie_serie_item {
 .info_wrapper {
   width: 251px;
   height: 100%;
-  background-color: rgba(50, 50, 50, 0.8);
+  background-color: rgba(50, 50, 50, 0.9);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -96,6 +99,15 @@ li.movie_serie_item {
   cursor: pointer;
   opacity: 1;
 }
+.info_list li {
+  margin-bottom: 10px;
+  color: rgb(213, 213, 213);
+}
+.info_list li span {
+  font-weight: bold;
+  color: #67ff00;
+}
 .lang {
   width: 40px;
+  vertical-align: middle;
 }
