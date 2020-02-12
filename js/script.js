@@ -44,7 +44,6 @@ function printSingleMovie(string) {
         printResult('film', films);
         for (var i = 0; i < films.length; i++) {
           var thisMovie = data.results[i].id;
-          // console.log(thisMovie);
           printCastMovie(thisMovie);
         }
       } else {
@@ -77,7 +76,6 @@ function printSingleSerie(string) {
         printResult('tv', tv);
         for (var i = 0; i < tv.length; i++) {
           var thisSerie = data.results[i].id;
-          // console.log(thisMovie);
           printCastSerie(thisSerie);
         }
       } else {
@@ -195,7 +193,12 @@ function printCastMovie(id) {
       language: 'it-IT'
     },
     success: function(data) {
-      console.log(data);
+      var cast = data.cast;
+      // console.log(data);
+      for (var i = 0; i < cast.length; i++) {
+        var thisCast = data.cast[i].name;
+        console.log(thisCast);
+      }
     },
     error: function (request, state, errors) {
       console.log(errors);
@@ -212,7 +215,12 @@ function printCastSerie(id) {
       language: 'it-IT'
     },
     success: function(data) {
-      console.log(data);
+      var cast = data.cast;
+      // console.log(data);
+      for (var i = 0; i < cast.length; i++) {
+        var thisCast = data.cast[i].name;
+        console.log(thisCast);
+      }
     },
     error: function (request, state, errors) {
       console.log(errors);
