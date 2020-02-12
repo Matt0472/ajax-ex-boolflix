@@ -75,6 +75,11 @@ function printSingleSerie(string) {
       if(data.total_results > 0) {
         var tv = data.results;
         printResult('tv', tv);
+        for (var i = 0; i < tv.length; i++) {
+          var thisSerie = data.results[i].id;
+          // console.log(thisMovie);
+          printCastSerie(thisSerie);
+        }
       } else {
         printNoResult($('.series_list_container'));
       }
