@@ -42,10 +42,10 @@ function printSingleMovie(string) {
       if(data.total_results > 0) {
         var films = data.results;
         printResult('film', films);
-        for (var i = 0; i < films.length; i++) {
-          var thisMovie = data.results[i].id;
-          printCastMovie(thisMovie);
-        }
+        // for (var i = 0; i < films.length; i++) {
+        //   var thisMovie = data.results[i].id;
+        //   printCastMovie(thisMovie);
+        // }
       } else {
         printNoResult($('.movies_list_container'));
       }
@@ -74,10 +74,10 @@ function printSingleSerie(string) {
       if(data.total_results > 0) {
         var tv = data.results;
         printResult('tv', tv);
-        for (var i = 0; i < tv.length; i++) {
-          var thisSerie = data.results[i].id;
-          printCastSerie(thisSerie);
-        }
+        // for (var i = 0; i < tv.length; i++) {
+        //   var thisSerie = data.results[i].id;
+        //   printCastSerie(thisSerie);
+        // }
       } else {
         printNoResult($('.series_list_container'));
       }
@@ -151,12 +151,15 @@ function printResult(type, results) {
       original_language: printLanguage(thisResult.original_language),
       vote_average: printStars(thisResult.vote_average),
       poster_path: printPoster(thisResult.poster_path),
-      overview: printOverview(thisResult.overview)
+      overview: printOverview(thisResult.overview),
+      id: thisResult.id
     };
 
     var html = template(context);
 
     container.append(html);
+    printCastMovie(thisResult.id);
+    printCastSerie(thisResult.id);
   }
 }
 // FUNZIONE PER LA STAMPA SE NON CI SONO RISULTATI
@@ -194,11 +197,16 @@ function printCastMovie(id) {
     },
     success: function(data) {
       var cast = data.cast;
-      // console.log(data);
-      for (var i = 0; i < cast.length; i++) {
+      var actor;
+      var i = 0;
+
+      while ( i < cast.length && i < 5) {
         var thisCast = data.cast[i].name;
-        console.log(thisCast);
+        actor += thisCast + ' ';
+        i++;
       }
+      //mettere in dom
+      $('.movie_serie_item').attr('data-id').find('.cast').append(actor);
     },
     error: function (request, state, errors) {
       console.log(errors);
@@ -216,11 +224,15 @@ function printCastSerie(id) {
     },
     success: function(data) {
       var cast = data.cast;
-      // console.log(data);
-      for (var i = 0; i < cast.length; i++) {
+      var actor;
+      var i = 0;
+
+      while ( i < cast.length && i < 5) {
         var thisCast = data.cast[i].name;
-        console.log(thisCast);
+        actor += thisCast + ' ';
+        i++;
       }
+      $('.movie_serie_item').attr('data-id').find('.cast').append(actor);
     },
     error: function (request, state, errors) {
       console.log(errors);

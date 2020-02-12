@@ -49,16 +49,17 @@
 
   <!-- nostro template per film e serie -->
     <script id="film-series-template" type="text/x-handlebars-template">
-     <li class="movie_serie_item">
+     <li class="movie_serie_item" data-id="{{id}}">
        <div class="item_wrapper">
          <img class="poster" src="{{{poster_path}}}" alt="">
          <div class="info_wrapper">
            <ul class="text_left info_list">
-             <li><span>Tipo: </span>Serie{{type}}</li>
+             <li><span>Tipo: </span>{{type}}</li>
              <li><span>Titolo: </span>{{title}}</li>
              <li><span>Titolo Originale: </span> {{original_title}}</li>
              <li><span>Lingua Originale: </span> {{{original_language}}}</li>
              <li><span>Voto agli awards: </span> {{{vote_average}}}</li>
+             <li><span>Cast: </span><span class="cast"></span></li>
              <li>
                <div class="trama">
                  <span>Trama: </span>{{overview}}
